@@ -1,0 +1,20 @@
+<GridLayout rows="*" height="1500px">
+	<RadSideDrawer>
+		<StackLayout tkDrawerContent backgroundColor="gray">
+			<StackLayout height="56" style="text-align: center; vertical-align: center;">
+				<Label text="Navigation Menu"></Label>
+			</StackLayout>
+			<StackLayout>
+				<ListView [items]="items" class="list-group">
+					<ng-template let-item="item">
+					<Label [nsRouterLink]="['/item', item.id]" [text]="item.name"
+						class="list-group-item"></Label>
+					</ng-template>
+				</ListView>
+			</StackLayout>
+		</StackLayout>
+		<StackLayout tkMainContent>
+                    <page-router-outlet></page-router-outlet>
+		</StackLayout>
+	</RadSideDrawer>
+</GridLayout>

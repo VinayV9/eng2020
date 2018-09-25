@@ -2,13 +2,17 @@ import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { AppRoutingModule } from "./app.routing";
 import { AppComponent } from "./app.component";
+import { TNSTextToSpeech } from "nativescript-texttospeech";
+import { SpeechRecognition } from "nativescript-speech-recognition";
 
 import { ItemService } from "./item/item.service";
 import { ItemsComponent } from "./item/items.component";
 import { ItemDetailComponent } from "./item/item-detail.component";
+import { BotComponent } from "./components/bot/bot.component";
+import { SideNavComponent } from "./components/sidenav/sidenav.component";
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
-// import { NativeScriptFormsModule } from "nativescript-angular/forms";
+import { NativeScriptFormsModule } from "nativescript-angular/forms";
 
 // Uncomment and add to NgModule imports if you need to use the HttpClient wrapper
 // import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
@@ -19,15 +23,20 @@ import { ItemDetailComponent } from "./item/item-detail.component";
     ],
     imports: [
         NativeScriptModule,
-        AppRoutingModule
+        AppRoutingModule,
+        NativeScriptFormsModule
     ],
     declarations: [
         AppComponent,
         ItemsComponent,
-        ItemDetailComponent
+        ItemDetailComponent,
+        BotComponent,
+        SideNavComponent
     ],
     providers: [
-        ItemService
+        ItemService,
+        TNSTextToSpeech,
+        SpeechRecognition
     ],
     schemas: [
         NO_ERRORS_SCHEMA
