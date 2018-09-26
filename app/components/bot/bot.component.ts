@@ -1,11 +1,14 @@
 import { Component } from "@angular/core";
 import { TNSTextToSpeech, SpeakOptions } from "nativescript-texttospeech";
 import { SpeechRecognition, SpeechRecognitionTranscription, SpeechRecognitionOptions} from "nativescript-speech-recognition";
+import { QuestionService } from "../../services/question.service";
+import { Question } from "../../model/question";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
     selector: "ns-bot",
     moduleId: module.id,
-    templateUrl: "./components/bot/bot.component.html",
+    templateUrl: "./bot.component.html",
 })
 
 export class BotComponent { 
@@ -16,23 +19,18 @@ export class BotComponent {
     textToSay: string;
     ttsOptions: SpeakOptions;
     speechOptions: SpeechRecognitionOptions;
+    question: Question;
     //create another control that increases or dcreases the timing and plays again
     //let increment or decrement be 10ms
     //play the sound also
     //find the sweetspot and set that value. Assume speechrate to be 1.0
     
-    
-    onButtonTap(): void {
-        console.log("Button was pressed");
-        let i = 0;
-        let speakinterval = setInterval(() => { 
-            this.julia = this.juliaImages[i];
-            i++;
-            if (i == this.juliaImages.length) clearInterval(speakinterval);
-        }, this.timing);
-    }
-
-    constructor(private tts: TNSTextToSpeech, private speech: SpeechRecognition){
+    constructor(
+        private tts: TNSTextToSpeech,
+        private speech: SpeechRecognition,
+        private questionService: QuestionService,
+        private route: ActivatedRoute
+        ){
         this.speechOptions = {
         locale: 'en-Us',
         onResult: (transcription: SpeechRecognitionTranscription) => {
@@ -43,11 +41,27 @@ export class BotComponent {
         }
     }
 
+    ngOnInit(): void {
+        const id = this.route.snapshot.params["id"];
+        this.question = this.questionService.getQuestion(id);
+    }
+
+    animateJulia(): void {
+        console.log("Button was pressed");
+        let i = 0;
+        let speakinterval = setInterval(() => { 
+            this.julia = this.juliaImages[i];
+            i++;
+            if (i == this.juliaImages.length) clearInterval(speakinterval);
+        }, this.timing);
+    }
+
     //text to speech
-    textToSpeech(text){
+    textToSpeech(){
         this.ttsOptions = {
-            text: text,
+            text: this.textToSay,
             finishedCallback: (data) => {
+              this.animateJulia();
               console.log(data);
               console.log("i'm done");
             }

@@ -13,6 +13,9 @@ import { SideNavComponent } from "./components/sidenav/sidenav.component";
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
+import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angular";
+import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular";
+import { QuestionService } from "./services/question.service";
 
 // Uncomment and add to NgModule imports if you need to use the HttpClient wrapper
 // import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
@@ -24,7 +27,9 @@ import { NativeScriptFormsModule } from "nativescript-angular/forms";
     imports: [
         NativeScriptModule,
         AppRoutingModule,
-        NativeScriptFormsModule
+        NativeScriptFormsModule,
+        NativeScriptUISideDrawerModule,
+        NativeScriptUIListViewModule,
     ],
     declarations: [
         AppComponent,
@@ -36,7 +41,8 @@ import { NativeScriptFormsModule } from "nativescript-angular/forms";
     providers: [
         ItemService,
         TNSTextToSpeech,
-        SpeechRecognition
+        SpeechRecognition,
+        QuestionService
     ],
     schemas: [
         NO_ERRORS_SCHEMA
