@@ -42,8 +42,9 @@ export class BotComponent {
     }
 
     ngOnInit(): void {
-        const id = this.route.snapshot.params["id"];
+        const id = +this.route.snapshot.params["id"];
         this.question = this.questionService.getQuestion(id);
+        this.textToSay = this.question.text;
     }
 
     animateJulia(): void {

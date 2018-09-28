@@ -1,13 +1,15 @@
 <ActionBar title="question" class="action-bar"></ActionBar>
 <StackLayout>
-    <TextField [(ngModel)]="textToSay"></TextField>
-    <Button (tap)="textToSpeech()" text="Jarvis"></Button>
-    <StackLayout>
+    <!-- <TextField [(ngModel)]="textToSay"></TextField> -->
+    <StackLayout orientation="horizontal">
         <AbsoluteLayout>
             <Image src="~/images/julia/julia_angry.png" stretch="aspectFill" width="100" height="100"></Image>
             <Image src="~/images/julia/{{julia}}" stretch="aspectFill" width="100" height="100"></Image>
         </AbsoluteLayout>
-        <label text="{{question.text}}"></label>
+        <StackLayout>
+            <label class="h3" text="{{question.text}}" ></label>
+            <Button (tap)="textToSpeech()" text="Speak"></Button>
+        </StackLayout>
     </StackLayout>
     <FlexboxLayout alignItems="center" justifyContent="space-around" itemWidth="auto" itemHeight="auto">
        <Button (tap)="speechToText()" text="strat listening"></Button>

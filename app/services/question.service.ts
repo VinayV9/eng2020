@@ -6,6 +6,7 @@ import { Question } from "../model/question";
 export class QuestionService {
     private questions = new Array<Question>(
         { id: 1, text: "hello, how are you", visims: [] },
+        { id: 2, text: "Why should i hire you?", visims: [] },
         { id: 3, text: "how do you do", visims: []},
         { id: 4, text: "how is it going", visims: [] },
         { id: 5, text: "how old are you", visims: [] },

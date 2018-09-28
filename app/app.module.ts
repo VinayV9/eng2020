@@ -10,6 +10,7 @@ import { ItemsComponent } from "./item/items.component";
 import { ItemDetailComponent } from "./item/item-detail.component";
 import { BotComponent } from "./components/bot/bot.component";
 import { SideNavComponent } from "./components/sidenav/sidenav.component";
+import { HomeComponent } from "./components/home/home.component";
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
@@ -36,7 +37,8 @@ import { QuestionService } from "./services/question.service";
         ItemsComponent,
         ItemDetailComponent,
         BotComponent,
-        SideNavComponent
+        SideNavComponent,
+        HomeComponent
     ],
     providers: [
         ItemService,

@@ -1,3 +1,10 @@
+<ActionBar title="Home">
+    <ActionItem (tap)="toggle()">
+      <!-- example: using font-awesome for hamburger menu but you can use whatever you'd like -->
+      <Button class="fa" text="&#xf0c9;"></Button> 
+      <!-- however in your project, would be easier to use this plugin: https://github.com/NathanWalker/nativescript-fonticon -->
+    </ActionItem>
+</ActionBar>
 <GridLayout rows="*" height="1500px">
 	<RadSideDrawer>
 		<StackLayout tkDrawerContent backgroundColor="#0099CC">
@@ -14,7 +21,7 @@
 			</StackLayout>
 		</StackLayout>
 		<StackLayout tkMainContent>
-                    <!-- <page-router-outlet></page-router-outlet> -->
+			<router-outlet></router-outlet>
 		</StackLayout>
 	</RadSideDrawer>
 </GridLayout>

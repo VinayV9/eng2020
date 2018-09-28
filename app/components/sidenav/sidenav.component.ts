@@ -5,6 +5,12 @@ import { Component, OnInit,  ViewChild } from "@angular/core";
     selector: "ns-sidenav",
     moduleId: module.id,
     templateUrl: "./sidenav.component.html",
+    styles: [`
+    .fa {
+      font-family: FontAwesome, fontawesome-webfont;
+      font-size:20;
+    }
+  `]
 })
 
 export class SideNavComponent implements OnInit{ 
@@ -19,7 +25,11 @@ export class SideNavComponent implements OnInit{
     ngOnInit(): void {
         this.items = data;
     }
-
+    
+    public toggle() {
+        this.drawerComponent.sideDrawer.toggleDrawerState();
+    }
+    
     onOpenDrawerTap() {
         this.drawerComponent.sideDrawer.showDrawer();
     }
