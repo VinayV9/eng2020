@@ -1,6 +1,7 @@
 node_modules
 hooks
-*/**/*.js
 .cloud
 App_Resources
 platforms
+*/**/*.js
+.vscode
