@@ -1,28 +1,40 @@
 #eng2020
 
+nodejs
 
-# NativeScript Angular Template
+native-script
 
-This template creates a "Hello, world" NativeScript app using TypeScript and Angular.
+side kick
 
-You can create a new app that uses this template with either the `--template` option.
+##Development Setup
 
-```
-tns create my-app-name --template tns-template-hello-world-ng
-```
+git clone ""
 
-Or the `--ng` shorthand.
+cd eng2020
 
-```
-tns create my-app-name --ng
-```
+npm install
 
-> Note: Both commands will create a new NativeScript app that uses the latest version of this template published to [npm] (https://www.npmjs.com/package/tns-template-hello-world-ng).
+##Running the app for local development
 
-If you want to create a new app that uses the source of the template from the `master` branch, you can execute the following:
+Open side-kick
+select eng2020 folder
+if you have android sdk installed you can choose local build
+or choose colud build
+To see the output connect your device through OTG cable or else use emulator.
+Open developer options in your connected device and enable allow debugging.
+Click run on device.
+it will take 10 - 15 mins for the first time.
+after project is builed you can see the output on your connected device.
+you can change your code and see the changes in real time.
 
-```
-tns create my-app-name --template https://github.com/NativeScript/template-hello-world-ng.git#master
-```
+##Project Structure
 
-**NB:** Please, have in mind that the master branch may refer to dependencies that are not on NPM yet!
+app :
+
+node_modules :
+
+platforms :
+
+hooks :
+
+package.json :
