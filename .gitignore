@@ -1,5 +1,6 @@
 node_modules
 hooks
+.cloud/Build.zip
 App_Resources
 platforms
 */**/*.js
