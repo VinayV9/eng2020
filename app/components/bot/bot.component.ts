@@ -20,6 +20,7 @@ export class BotComponent {
     ttsOptions: SpeakOptions;
     speechOptions: SpeechRecognitionOptions;
     question: Question;
+    visimMapIdx: number[]
     //create another control that increases or dcreases the timing and plays again
     //let increment or decrement be 10ms
     //play the sound also
@@ -45,15 +46,24 @@ export class BotComponent {
         const id = +this.route.snapshot.params["id"];
         this.question = this.questionService.getQuestion(id);
         this.textToSay = this.question.text;
+        this.visimMapIdx = this.question.visims;
+    }
+
+    nextQuestion(id: number): void{
+        if(id < this.questionService.totalQuestions()){
+            this.question = this.questionService.getQuestion(id+1)
+        }else{
+            alert("No more questions");
+        }
     }
 
     animateJulia(): void {
         console.log("Button was pressed");
         let i = 0;
         let speakinterval = setInterval(() => { 
-            this.julia = this.juliaImages[i];
+            this.julia = this.juliaImages[this.visimMapIdx[i]];
             i++;
-            if (i == this.juliaImages.length) clearInterval(speakinterval);
+            if (i == this.visimMapIdx.length) clearInterval(speakinterval);
         }, this.timing);
     }
 
@@ -65,6 +75,7 @@ export class BotComponent {
             finishedCallback: (data) => {
               console.log(data);
               console.log("i'm done");
+              this.julia = "julia_full.jpg";
             }
           };
           this.tts.speak(this.ttsOptions);

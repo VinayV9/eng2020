@@ -9,6 +9,7 @@
         <StackLayout>
             <label class="h3" text="{{question.text}}" ></label>
             <Button (tap)="textToSpeech()" text="Speak"></Button>
+            <Button (tap)="nextQuestion(question.id)" text="Next"></Button>
         </StackLayout>
     </StackLayout>
     <FlexboxLayout alignItems="center" justifyContent="space-around" itemWidth="auto" itemHeight="auto">

@@ -6,7 +6,7 @@ import { Question } from "../model/question";
 export class QuestionService {
     private questions = new Array<Question>(
         { id: 1, text: "hello, how are you", visims: [12, 1, 14, 8, 12, 9, 2, 13, 6, 7] },
-        { id: 2, text: "how do yor do", visims: [12, 9, 19, 7, 6, 7, 19, 7] },
+        { id: 2, text: "how do you do", visims: [12, 9, 19, 7, 6, 7, 19, 7] },
         { id: 3, text: "how do you do", visims: [12, 9, 19, 7, 6, 7, 19, 7]},
         { id: 4, text: "how is it going", visims: [12, 9, 6, 15, 6, 19, 20, 8, 6, 20] },
         { id: 5, text: "how old are you", visims: [12, 9, 8, 14, 19, 2, 13, 6, 7] },
@@ -22,5 +22,9 @@ export class QuestionService {
 
     getQuestion(id: number): Question {
         return this.questions.filter(question => question.id === id)[0];
+    }
+
+    totalQuestions(): number{
+        return this.questions.length;
     }
 }
