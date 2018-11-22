@@ -59,10 +59,10 @@ export class BotComponent {
 
     //text to speech
     textToSpeech(){
+        this.animateJulia();
         this.ttsOptions = {
             text: this.textToSay,
             finishedCallback: (data) => {
-              this.animateJulia();
               console.log(data);
               console.log("i'm done");
             }
