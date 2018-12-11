@@ -13,7 +13,7 @@ import { ActivatedRoute } from "@angular/router";
 
 export class BotComponent { 
 
-    juliaImages = ['julia_angry.png', 'julia_tongue2_full.png', 'julia_eyes_closed.png', 'julia_eyes_close1.png', 'julia_eyes_close2.png', 'julia_eyes_lookleft.png', 'julia_eyes_quiz.png', 'julia_eyes_lookright.png', 'julia_mouth_narrow_w.png', 'julia_eyes_sad.png', 'julia_eyes_wow.png', 'julia_mouth_medium1.png', 'julia_full.png', 'julia_mouth_closed.png', 'julia_mouth_narrow_o.png', 'julia_mouth_narrow_u.png', 'julia_mouth_smile.png', 'julia_mouth_wide_f.png'];
+    juliaImages = ['julia_full.png','julia_mouth_wide5.png','julia_mouth_wide5.png','julia_mouth_narrow_o.png','julia_mouth_wide_y.png','julia_mouth_wide5.png','julia_mouth_wide_d_f_k_s.png','julia_mouth_narrow_w.png','julia_mouth_narrow_o.png','julia_mouth_wide_d_f_k_s.png','julia_mouth_narrow_u.png','julia_mouth_wide5.png','julia_mouth_wide_d_f_k_s.png','julia_mouth_wide_sh.png','julia_mouth_wide5.png','julia_mouth_wide_sh.png','julia_mouth_wide_sh.png','julia_mouth_wide_th.png','julia_mouth_wide_f.png','julia_mouth_wide_sh.png','julia_mouth_wide_d_f_k_s.png','julia_mouth_closed.png'];
     timing = 200;
     julia = '';
     textToSay: string;
