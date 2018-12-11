@@ -2,7 +2,7 @@
     "nativescript": {
         "id": "org.nativescript.eng2020",
         "tns-android": {
-            "version": "4.2.0"
+            "version": "4.2.0"  
         },
         "tns-ios": {
             "version": "4.2.0"
@@ -21,12 +21,12 @@
         "@angular/platform-browser": "^6.1.10",
         "@angular/platform-browser-dynamic": "^6.1.10",
         "@angular/router": "^6.1.10",
-        "nativescript-angular": "~6.1.0",
+        "nativescript-angular": "^7.0.3",
         "nativescript-speech-recognition": "^1.4.1",
         "nativescript-texttospeech": "^2.0.2",
-        "nativescript-theme-core": "~1.0.4",
-        "nativescript-ui-listview": "^3.8.0",
-        "nativescript-ui-sidedrawer": "^4.3.1",
+        "nativescript-theme-core": "^1.0.4",
+        "nativescript-ui-listview": "^5.0.1",
+        "nativescript-ui-sidedrawer": "^5.0.1",
         "natural": "^0.6.2",
         "reflect-metadata": "~0.1.8",
         "rxjs": "^6.3.3",
