@@ -1,0 +1,23 @@
+<ActionBar class="action-bar">
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+    <ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
+        ios.position="left">
+    </ActionItem>
+    <Label class="action-bar-title" text="Login"></Label>
+</ActionBar>
+
+<StackLayout class="page page-content" horizontalAlignment="center" verticalAlignment="center">
+    <TextField hint="email" [(ngModel)]="email"></TextField>
+    <TextField hint="password" secure="true" [(ngModel)]="password"></TextField>
+    <Button *ngIf="state"  class="btn btn-outline btn-primary btn-rounded-lg" text="Login" (tap)="login()"></Button>
+    <Button *ngIf="!state" class="btn btn-outline btn-primary btn-rounded-lg" text="Register" (tap)="register()"></Button>
+    <Button class="btn btn-outline btn-primary btn-rounded-lg" text="Toggle" (tap)="toggle()"></Button>
+</StackLayout>
+
+<!-- <StackLayout>
+<StackLayout  *ngFor="let name of names" class="list-group-item">
+    <Label text="name"></Label>
+    <Button [text]="name"></Button>
+</StackLayout>
+</StackLayout> -->
+

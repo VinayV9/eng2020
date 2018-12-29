@@ -1,0 +1,23 @@
+<ActionBar class="action-bar">
+    <!-- 
+    Use the NavigationButton as a side-drawer button in Android
+    because ActionItems are shown on the right side of the ActionBar
+    -->
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+    <!-- 
+    Use the ActionItem for IOS with position set to left. Using the
+    NavigationButton as a side-drawer button in iOS is not possible,
+    because its function is to always navigate back in the application.
+    -->
+    <ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
+        ios.position="left">
+    </ActionItem>
+    <Label class="action-bar-title" text="Home"></Label>
+</ActionBar>
+
+<StackLayout class="page page-content" horizontalAlignment="center" verticalAlignment="center">
+    <Image class="img-circle p-5" src="~/images/julia/julia_full.png" stretch="aspectFill" width="100" height="100"></Image>
+    <!-- <Label class="page-icon fa" text="&#xf015;"></Label> -->
+    <Label class="page-placeholder" text="Job Interview Skill Training"></Label>
+    <Button class="btn btn-outline btn-primary btn-rounded-lg" text="Get Started" [nsRouterLink]="['/lessons']"></Button>
+</StackLayout>

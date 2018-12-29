@@ -1,0 +1,34 @@
+<ActionBar class="action-bar">
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+    <ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
+        ios.position="left">
+    </ActionItem>
+    <Label class="action-bar-title" text="Login"></Label>
+</ActionBar>
+
+<TabView>
+    <StackLayout *tabItem="{title: 'General Interview'}">
+        <ListView class="list-group" [items]="general" (itemTap)="onItemTap($event)"
+            style="height:1250px">
+            <ng-template let-country="item" let-i="index">
+                <FlexboxLayout flexDirection="row" class="list-group-item">
+                    <!-- <Image [src]="country.imageSrc" class="thumb img-circle"></Image> -->
+                    <Label [text]="country.name" class="list-group-item-heading"
+                        verticalAlignment="center" style="width: 60%" [nsRouterLink]="['/general/lessons:{{i}}']"></Label>
+                </FlexboxLayout>
+            </ng-template>
+        </ListView>
+    </StackLayout>
+    <StackLayout *tabItem="{title: 'Technical Interview'}">
+        <ListView class="list-group" [items]="technical" (itemTap)="onItemTap($event)"
+            style="height:1250px">
+            <ng-template let-country="item" let-i="index">
+                <FlexboxLayout flexDirection="row" class="list-group-item">
+                    <!-- <Image [src]="country.imageSrc" class="thumb img-circle"></Image> -->
+                    <Label [text]="country.name" class="list-group-item-heading"
+                        verticalAlignment="center" style="width: 60%"  [nsRouterLink]="['/technical/lessons:{{i}}']"></Label>
+                </FlexboxLayout>
+            </ng-template>
+        </ListView>
+    </StackLayout>
+</TabView>
