@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Question } from "../model/question";
 
 @Injectable()
@@ -15,7 +15,20 @@ export class QuestionService {
         { id: 8, text: "tell me about yourself", visims: [19, 4, 14, 21, 6, 1, 21, 9, 19, 6, 5, 15, 4, 14, 18] },
         { id: 9, text: "let's go", visims: [14, 4, 19, 15, 20, 8]}
     );
+    
+    headers = new HttpHeaders({
+      "Content-Type": "application/json"
+    });
 
+    constructor(private http: HttpClient){
+       
+    }
+
+    getQuestions(path: string){
+      let url: string =  `assets\${path}.json`
+      return this.http.get(url, { headers: this.headers });
+    }
+    
     getItems(): Question[] {
         return this.questions;
     }

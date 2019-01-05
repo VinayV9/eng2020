@@ -5,3 +5,23 @@
     </ActionItem>
     <Label class="action-bar-title" text="Questions"></Label>
 </ActionBar>
+
+<StackLayout>
+    <TextField [(ngModel)]="textToSay"></TextField>
+    <StackLayout orientation="horizontal">
+        <AbsoluteLayout>
+            <Image src="~/images/julia/julia_full.png" stretch="aspectFill" width="100" height="100"></Image>
+            <Image src="~/images/julia/{{julia}}" stretch="aspectFill" width="100" height="100"></Image>
+        </AbsoluteLayout>
+        <StackLayout>
+            <label class="h3" text="{{question.text}}" ></label>
+            <Button (tap)="textToSpeech()" text="Speak"></Button>
+            <Button (tap)="nextQuestion()" text="Next"></Button>
+        </StackLayout>
+    </StackLayout>
+    
+    <FlexboxLayout alignItems="center" justifyContent="space-around" itemWidth="auto" itemHeight="auto">
+       <Button (tap)="speechToText()" text="strat listening"></Button>
+       <Button (tap)="stopListening()" text="stop listening"></Button>
+    </FlexboxLayout>
+ </StackLayout>

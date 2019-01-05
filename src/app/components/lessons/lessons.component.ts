@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import { ItemEventData } from "tns-core-modules/ui/list-view"
 import * as app from "tns-core-modules/application";
+import {Router} from "@angular/router";
 
 @Component({
     selector: "Login",
@@ -11,7 +12,7 @@ import * as app from "tns-core-modules/application";
 
 export class LessonsComponent {
     
-    constructor(){
+    constructor(private router: Router){
         
     }
 
@@ -19,6 +20,7 @@ export class LessonsComponent {
         const sideDrawer = <RadSideDrawer>app.getRootView();
         sideDrawer.showDrawer();
     }
+    
     general: { name: string }[] = [
         { name: "Introduction" },
         { name: "Preparation" },
@@ -38,7 +40,11 @@ export class LessonsComponent {
         { name: "Computer Networks" },
         { name: "C Programming" }
     ]
-    onItemTap(args: ItemEventData): void {
-        console.log('Item with index: ' + args.index + ' tapped');
-    }
+    // onItemTap(args: ItemEventData): void {
+    //     //e line console avvali kada 
+    //     alert('hekk');
+    //     console.log('Item with index: ' + args.index + ' tapped');
+    //     this.router.navigate(['lessons', args.index]);
+    //     // [nsRouterLink]="['/lessons', i+' general']"
+    // }
 }

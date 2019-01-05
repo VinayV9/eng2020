@@ -4,6 +4,8 @@ import { SpeechRecognition, SpeechRecognitionTranscription, SpeechRecognitionOpt
 import { QuestionService } from "../../services/question.service";
 import { Question } from "../../model/question";
 import { ActivatedRoute } from "@angular/router";
+import { RadSideDrawer } from "nativescript-ui-sidedrawer";
+import * as app from "tns-core-modules/application";
 
 @Component({
     selector: "ns-bot",
@@ -13,25 +15,21 @@ import { ActivatedRoute } from "@angular/router";
 
 export class BotComponent { 
 
-    juliaImages = ['julia_full.png','julia_mouth_wide5.png','julia_mouth_wide5.png','julia_mouth_narrow_o.png','julia_mouth_wide_y.png','julia_mouth_wide5.png','julia_mouth_wide_d_f_k_s.png','julia_mouth_narrow_w.png','julia_mouth_narrow_o.png','julia_mouth_wide_d_f_k_s.png','julia_mouth_narrow_u.png','julia_mouth_wide5.png','julia_mouth_wide_d_f_k_s.png','julia_mouth_wide_sh.png','julia_mouth_wide5.png','julia_mouth_wide_sh.png','julia_mouth_wide_sh.png','julia_mouth_wide_th.png','julia_mouth_wide_f.png','julia_mouth_wide_sh.png','julia_mouth_wide_d_f_k_s.png','julia_mouth_closed.png'];
+    juliaImages = ['julia_full.png','julia_mouth_wide5.png','julia_mouth_wide5.png','julia_mouth_narrow_o.png','julia_mouth_wide_y.png','julia_mouth_wide5.png','julia_mouth_wide_d_f_k_r_s.png','julia_mouth_narrow_w.png','julia_mouth_narrow_o.png','julia_mouth_wide_d_f_k_r_s.png','julia_mouth_narrow_u.png','julia_mouth_wide5.png','julia_mouth_wide_d_f_k_r_s.png','julia_mouth_wide_sh.png','julia_mouth_wide5.png','julia_mouth_wide_sh.png','julia_mouth_wide_sh.png','julia_mouth_wide_th.png','julia_mouth_wide_f.png','julia_mouth_wide_sh.png','julia_mouth_wide_d_f_k_r_s.png','julia_mouth_closed.png'];
     timing = 200;
     julia = '';
     textToSay: string;
     ttsOptions: SpeakOptions;
     speechOptions: SpeechRecognitionOptions;
+    questions: Question[] =[];
     question: Question;
-    visimMapIdx: number[]
-    //create another control that increases or dcreases the timing and plays again
-    //let increment or decrement be 10ms
-    //play the sound also
-    //find the sweetspot and set that value. Assume speechrate to be 1.0
     
     constructor(
         private tts: TNSTextToSpeech,
         private speech: SpeechRecognition,
         private questionService: QuestionService,
-        private route: ActivatedRoute
-        ){
+        private route: ActivatedRoute){
+
         this.speechOptions = {
         locale: 'en-Us',
         onResult: (transcription: SpeechRecognitionTranscription) => {
@@ -43,27 +41,47 @@ export class BotComponent {
     }
 
     ngOnInit(): void {
-        const id = +this.route.snapshot.params["id"];
-        this.question = this.questionService.getQuestion(id);
-        this.textToSay = this.question.text;
-        this.visimMapIdx = this.question.visims;
+        let path;
+
+        this.route.params.subscribe((params) => {
+            let a = params["id"].split(' ');
+            path = `${parseInt(a[0])}\/${a[1]}`;
+        });
+       
+        this.questionService.getQuestions(path)
+        .subscribe(
+            (data: any)=>{ 
+                this.questions = data;
+                this.question = this.questions[0];
+            },
+            (error)=>{ alert(error); }
+        );
+        // this.question = this.questionService.getQuestion(id);
+        // this.textToSay = this.question.text;
+        // this.visimMapIdx = this.question.visims;
+    }
+
+    onDrawerButtonTap(): void {
+        const sideDrawer = <RadSideDrawer>app.getRootView();
+        sideDrawer.showDrawer();
     }
 
     nextQuestion(id: number): void{
-        if(id < this.questionService.totalQuestions()){
-            this.question = this.questionService.getQuestion(id+1)
+        if(id > 0 && id < QuestionService.length){
+            this.question = this.questions[++id];
         }else{
             alert("No more questions");
         }
     }
-
+    
+    
     animateJulia(): void {
         console.log("Button was pressed");
         let i = 0;
         let speakinterval = setInterval(() => { 
-            this.julia = this.juliaImages[this.visimMapIdx[i]];
+            this.julia = this.juliaImages[this.question.visims[i]];
             i++;
-            if (i == this.visimMapIdx.length) clearInterval(speakinterval);
+            if (i == this.question.visims.length) clearInterval(speakinterval);
         }, this.timing);
     }
 

@@ -3,7 +3,7 @@
     <ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
         ios.position="left">
     </ActionItem>
-    <Label class="action-bar-title" text="Login"></Label>
+    <Label class="action-bar-title" text="Lessons"></Label>
 </ActionBar>
 
 <TabView>
@@ -13,8 +13,8 @@
             <ng-template let-country="item" let-i="index">
                 <FlexboxLayout flexDirection="row" class="list-group-item">
                     <!-- <Image [src]="country.imageSrc" class="thumb img-circle"></Image> -->
-                    <Label [text]="country.name" class="list-group-item-heading"
-                        verticalAlignment="center" style="width: 60%" [nsRouterLink]="['/general/lessons:{{i}}']"></Label>
+                    <Label [text]="country.name" class="list-group-item-heading" 
+                        verticalAlignment="center" style="width: 60%" [nsRouterLink]="['/lessons', i+' general']"></Label>
                 </FlexboxLayout>
             </ng-template>
         </ListView>
@@ -26,7 +26,7 @@
                 <FlexboxLayout flexDirection="row" class="list-group-item">
                     <!-- <Image [src]="country.imageSrc" class="thumb img-circle"></Image> -->
                     <Label [text]="country.name" class="list-group-item-heading"
-                        verticalAlignment="center" style="width: 60%"  [nsRouterLink]="['/technical/lessons:{{i}}']"></Label>
+                        verticalAlignment="center" style="width: 60%"  [nsRouterLink]="['/lessons', i+' technical' ]"></Label>
                 </FlexboxLayout>
             </ng-template>
         </ListView>
