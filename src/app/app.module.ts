@@ -14,6 +14,7 @@ import { BotComponent } from "./components/bot/bot.component";
 import { LoginComponent } from "./components/login/login.component";
 import { LessonsComponent } from "./components/lessons/lessons.component";
 import { QuestionComponent } from "./components/question/question.component";
+import { QuestionService } from "./services/question.service";
 
 @NgModule({
     bootstrap: [
@@ -37,6 +38,7 @@ import { QuestionComponent } from "./components/question/question.component";
     providers: [
         TNSTextToSpeech,
         SpeechRecognition,
+        QuestionService
     ],
     schemas: [
         NO_ERRORS_SCHEMA

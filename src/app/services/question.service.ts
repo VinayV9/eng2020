@@ -25,7 +25,8 @@ export class QuestionService {
     }
 
     getQuestions(path: string){
-      let url: string =  `assets\${path}.json`
+      let url: string =  `~/assets/${path}.json`;
+      console.log(url);
       return this.http.get(url, { headers: this.headers });
     }
     

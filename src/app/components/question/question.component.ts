@@ -16,7 +16,7 @@ import * as app from "tns-core-modules/application";
 export class QuestionComponent {
 
     juliaImages = ['julia_full.png','julia_mouth_wide5.png','julia_mouth_wide5.png','julia_mouth_narrow_o.png','julia_mouth_wide_y.png','julia_mouth_wide5.png','julia_mouth_wide_d_f_k_r_s.png','julia_mouth_narrow_w.png','julia_mouth_narrow_o.png','julia_mouth_wide_d_f_k_r_s.png','julia_mouth_narrow_u.png','julia_mouth_wide5.png','julia_mouth_wide_d_f_k_r_s.png','julia_mouth_wide_sh.png','julia_mouth_wide5.png','julia_mouth_wide_sh.png','julia_mouth_wide_sh.png','julia_mouth_wide_th.png','julia_mouth_wide_f.png','julia_mouth_wide_sh.png','julia_mouth_wide_d_f_k_r_s.png','julia_mouth_closed.png'];
-    timing: number = 200; julia: string = 'julia_full.png'; textToSay: string;
+    timing: number = 80; julia: string = 'julia_full.png';
 
     ttsOptions: SpeakOptions;
     speechOptions: SpeechRecognitionOptions;
@@ -32,8 +32,7 @@ export class QuestionComponent {
         this.speechOptions = {
         locale: 'en-Us',
         onResult: (transcription: SpeechRecognitionTranscription) => {
-                this.textToSay = '';
-                this.textToSay = transcription.text;
+                // this.textToSay = transcription.text;
                 // alert(transcription.text);
             }
         }
@@ -45,19 +44,17 @@ export class QuestionComponent {
         this.route.params.subscribe((params) => {
             let a = params["id"].split(' ');
             path = `${a[1]}\/${parseInt(a[0])}`;
-            alert(path);
-            this.question = {id: 0, text: "hello r u thre", visims: [1,2,3,4]};
         });
        
         
-        // this.questionService.getQuestions(path)
-        // .subscribe(
-        //     (data: any)=>{ 
-        //         this.questions = data;
-        //         this.question = this.questions[this.id];
-        //     },
-        //     (error)=>{ alert(error); }
-        // );
+        this.questionService.getQuestions(path)
+        .subscribe(
+            (data: any)=>{ 
+                this.questions = data.data;
+                this.question = this.questions[this.id];
+            },
+            (error)=>{ alert(error); }
+        );
         
     }
     
@@ -68,7 +65,7 @@ export class QuestionComponent {
     }
 
     nextQuestion(): void{
-        if(this.id > 0 && this.id < this.questions.length){
+        if(this.id >= 0 && this.id < this.questions.length){
             this.question = this.questions[++this.id];
         }else{
             alert("No more questions");
@@ -91,7 +88,7 @@ export class QuestionComponent {
     textToSpeech(){
         this.animateJulia();
         this.ttsOptions = {
-            text: this.textToSay,
+            text: this.question.text,
             finishedCallback: (data) => {
               console.log(data);
               console.log("i'm done");
